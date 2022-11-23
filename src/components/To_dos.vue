@@ -3,12 +3,8 @@
     <h3>ToDos</h3>
     <div class="legend">
       <span>Double click to mark as complete.</span>
-      <!-- span>
-        <span class="incomplete-box"></span> = Incomplete
-      </span -->
-      <!-- span>
-        <span class="complete-box"></span> = Complete
-      </span-->
+      <span><span class="incomplete-box"></span> = Incomplete</span>
+      <span><span class="complete-box"></span> = Complete</span>
     </div>
     <div class="todos">
       <div
@@ -25,7 +21,17 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  /* Import our getters and our actions
+  name: "Todos",
+  methods: {
+    ...mapActions([
+        'fetchTodos',
+        'deleteTodo', 
+        'update_todo'])
+  }
+  */
+};
 </script>
 
 <style scoped>
@@ -48,7 +54,7 @@ i {
   bottom: 10px;
   right: 10px;
   color: #fff;
-  cusor: pointer;
+  cursor: pointer;
 }
 .legend {
   display: flex;
