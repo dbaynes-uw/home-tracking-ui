@@ -21,16 +21,27 @@
   </div>
 </template>
 <script>
+// Import our getters and our actions
+import { mapGetters, mapActions } from "vuex";
 export default {
-  /* Import our getters and our actions
-  name: "Todos",
+  name: "To_dos",
   methods: {
-    ...mapActions([
-        'fetchTodos',
-        'deleteTodo', 
-        'update_todo'])
-  }
-  */
+    ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
+    onDoubleClick(currentTodo) {
+      const updatedTodo = {
+        id: currentTodo.id,
+        title: currentTodo.title,
+        completed: !currentTodo.completed,
+      };
+      this.updateTodo(updatedTodo);
+    },
+  },
+  computed: {
+    ...mapGetters(["allTodos"]),
+  },
+  created() {
+    this.fetchTodos();
+  },
 };
 </script>
 
@@ -72,6 +83,10 @@ i {
   width: 10px;
   height: 10px;
   background: #41b882;
+}
+.is-complete {
+  background: #35495e;
+  color: #fff;
 }
 @media (max-width: 500px) {
   .todos {
