@@ -32,6 +32,13 @@ const actions = {
     await axios.delete(api_url + `/${id}`);
     commit("removeTodo", id);
   },
+  async filterTodos({ commit }, event) {
+    const limit = parseInt(
+      event.target.options[event.target.options.selectedIndex].innerText
+    );
+    const response = await axios.get(api_url + `?_limit=${limit}`);
+    commit("setTodos", response.data);
+  },
   async updateTodo({ commit }, updatedTodo) {
     const response = await axios.put(
       api_url + `/${updatedTodo.id}`,

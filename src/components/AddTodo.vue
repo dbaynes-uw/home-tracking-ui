@@ -54,6 +54,6 @@ input[type="submit"] {
 }
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-  background: #31836b; /*  */
+  background: #31836b;
 }
 </style>
