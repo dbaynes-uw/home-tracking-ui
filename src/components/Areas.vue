@@ -6,16 +6,16 @@
       <span><span class="incomplete-box"></span> = Incomplete</span>
       <span><span class="complete-box"></span> = Complete</span>
     </div>
-    <div class="todos">
+    <div class="areas">
       <div
-        v-for="todo in allTodos"
-        :key="todo.id"
-        @dblclick="onDoubleClick(todo)"
-        class="todo"
-        v-bind:class="{ 'is-complete': todo.completed }"
+        v-for="area in allAreas"
+        :key="area.id"
+        @dblclick="onDoubleClick(area)"
+        class="area"
+        v-bind:class="{ 'is-complete': area.status }"
       >
-        {{ todo.title }}
-        <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
+        {{ area.name }}
+        <i @click="deleteArea(area.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
   </div>
@@ -24,34 +24,34 @@
 // Import our getters and our actions
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "To_dos",
+  name: "Areas",
   methods: {
-    ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
-    onDoubleClick(currentTodo) {
-      const updatedTodo = {
-        id: currentTodo.id,
-        title: currentTodo.title,
-        completed: !currentTodo.completed,
+    ...mapActions(["fetchAreas", "deleteArea", "updateArea"]),
+    onDoubleClick(currentArea) {
+      const updatedArea = {
+        id: currentArea.id,
+        name: currentArea.name,
+        status: !currentArea.status,
       };
-      this.updateTodo(updatedTodo);
+      this.updateArea(updatedArea);
     },
   },
   computed: {
-    ...mapGetters(["allTodos"]),
+    ...mapGetters(["allAreas"]),
   },
   created() {
-    this.fetchTodos();
+    this.fetchAreas();
   },
 };
 </script>
 
 <style scoped>
-.todos {
+.areas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
-.todo {
+.area {
   border: 1px solid #ccc;
   background: #41b883;
   padding: 1rem;
@@ -89,7 +89,7 @@ i {
   color: #fff;
 }
 @media (max-width: 500px) {
-  .todos {
+  .areas {
     grid-template.columns: 1fr;
   }
 }

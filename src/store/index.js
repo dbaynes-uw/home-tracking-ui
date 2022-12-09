@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
-import todos from "@/store/modules/todos";
+import areas from "@/store/modules/areas";
 export default createStore({
   modules: {
-    todos,
+    areas,
   },
 });

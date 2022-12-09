@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>Add Todo</h3>
+    <h3>Add Area</h3>
     <div class="add">
       <form @submit="onSubmit">
-        <input type="text" v-model="title" placeholder="Add Todo..." />
+        <input type="text" v-model="name" placeholder="Add Area..." />
         <input type="submit" value="Submit" />
       </form>
     </div>
@@ -13,18 +13,18 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  name: "AddTodo",
+  name: "AddArea",
   data() {
     return {
-      title: "",
+      name: "",
     };
   },
   methods: {
-    ...mapActions(["addTodo"]),
+    ...mapActions(["addArea"]),
     onSubmit(event) {
       event.preventDefault();
-      this.addTodo(this.title);
-      this.title = "";
+      this.addArea(this.name);
+      this.name = "";
     },
   },
 };
