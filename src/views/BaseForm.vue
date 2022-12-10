@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Create a Project</h1>
+    <h2>Create a Project</h2>
     <form @submit.prevent="sendForm">
       <fieldset>
         <legend>Project Name</legend>

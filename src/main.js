@@ -1,5 +1,22 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import store from "./store";
+import upperFirst from "lodash/upperFirst";
+import camelCase from "lodash/camelCase";
+const requireComponent = require.context(
+  "./components",
+  false,
+  /Base[A-Z]\w+\.(vue|js)$/
+);
+// createApp(App).use(store).mount("#app");
+const app = createApp(App).use(store);
+requireComponent.keys().forEach((fileName) => {
+  const componentConfig = requireComponent(fileName);
 
-createApp(App).use(store).mount("#app");
+  const componentName = upperFirst(
+    camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, "$1"))
+  );
+
+  app.component(componentName, componentConfig.default || componentConfig);
+  app.mount("#app");
+});
