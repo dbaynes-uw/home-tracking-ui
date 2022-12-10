@@ -5,21 +5,21 @@
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails | SQLite</h6>
       <FilterAreas />
       <Areas />
-      <AddArea />
+      <BaseForm />
     </div>
   </div>
 </template>
 
 <script>
+import BaseForm from "@/views/BaseForm";
 import Areas from "@/components/Areas.vue";
-import AddArea from "@/components/AddArea.vue";
 import FilterAreas from "@/components/FilterAreas.vue";
 export default {
   name: "App",
   components: {
-    Areas,
-    AddArea,
     FilterAreas,
+    Areas,
+    BaseForm,
   },
 };
 </script>
