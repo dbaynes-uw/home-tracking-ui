@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>Area List Manager</h1>
+      <h1>Home Tracking Manager</h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails | SQLite</h6>
-      <AddArea />
       <FilterAreas />
       <Areas />
+      <AddArea />
     </div>
   </div>
 </template>

@@ -19,10 +19,11 @@ const actions = {
     const response = await axios.get(api_url);
     commit("setAreas", response.data);
   },
-  async addArea({ commit }, name) {
+  async addArea({ commit }, name, description) {
     const response = await axios.post(api_url, {
       area: {
         name,
+        description,
         status: false,
       },
     });

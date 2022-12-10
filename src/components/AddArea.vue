@@ -3,8 +3,18 @@
     <h3>Add Area</h3>
     <div class="add">
       <form @submit="onSubmit">
-        <input type="text" v-model="name" placeholder="Add Area..." />
-        <input type="submit" value="Submit" />
+        <fieldset>
+          <legend>Project name</legend>
+          <input type="text" v-model="name" placeholder="Project Name..." />
+          <legend>Description</legend>
+          <input
+            type="text"
+            v-model="description"
+            placeholder="Description..."
+          />
+          <legend></legend>
+          <input type="submit" value="Submit" />
+        </fieldset>
       </form>
     </div>
   </div>
