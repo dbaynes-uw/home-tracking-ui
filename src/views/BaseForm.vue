@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Create a Project</h2>
-    <form @submit.prevent="sendForm">
+    <form class="add-form" @submit.prevent="sendForm">
       <fieldset>
         <legend>Project Name</legend>
         <BaseInput
@@ -53,6 +53,18 @@ export default {
 </script>
 
 <style>
+.add-form {
+  display: flex;
+  flex-direction: column;
+  width: 425px;
+  padding: 20px;
+  margin: 40px;
+  border: 2px solid #d8d8d8;
+  background-color: white;
+  -webkit-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
+  box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.57);
+}
 fieldset {
   border: 0;
   margin: 0;

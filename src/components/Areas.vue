@@ -14,7 +14,14 @@
         class="area"
         v-bind:class="{ 'is-complete': area.status }"
       >
-        {{ area.name }} : {{ area.description }}
+        <p class="p-align-left">
+          {{ area.name }}
+        </p>
+        <ul class="ul-left">
+          <div v-for="task in area.tasks" v-bind:key="task.id">
+            <li>{{ task.description }}</li>
+          </div>
+        </ul>
         <i @click="deleteArea(area.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
@@ -46,6 +53,18 @@ export default {
 </script>
 
 <style scoped>
+.p-align-left {
+  text-align: left;
+  padding-top: 0em;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+.ul-left {
+  text-align: left;
+  padding-inline-start: 1rem;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
 .areas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -55,6 +74,7 @@ export default {
   border: 1px solid #ccc;
   background: #41b883;
   padding: 1rem;
+  padding-top: 0em;
   border-radius: 5px;
   text-align: center;
   position: relative;
