@@ -14,7 +14,7 @@
         class="area"
         v-bind:class="{ 'is-complete': area.status }"
       >
-        {{ area.name }}
+        {{ area.name }} : {{ area.description }}
         <i @click="deleteArea(area.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
