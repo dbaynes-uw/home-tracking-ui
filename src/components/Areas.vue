@@ -15,7 +15,7 @@
         v-bind:class="{ 'is-complete': area.status }"
       >
         <p class="p-align-left">
-          {{ area.name }}
+          {{ area.description }} - every {{ area.frequency }}
         </p>
         <ul class="ul-left">
           <div v-for="task in area.tasks" v-bind:key="task.id">
@@ -32,12 +32,14 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Areas",
+  tasks: [],
   methods: {
     ...mapActions(["fetchAreas", "deleteArea", "updateArea"]),
     onDoubleClick(currentArea) {
       const updatedArea = {
         id: currentArea.id,
-        name: currentArea.name,
+        description: currentArea.description,
+        tasks: currentArea.tasks,
         status: !currentArea.status,
       };
       this.updateArea(updatedArea);
