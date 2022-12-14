@@ -19,7 +19,9 @@
         </p>
         <ul class="ul-left">
           <div v-for="task in area.tasks" v-bind:key="task.id">
-            <li>{{ task.description }}</li>
+            <div v-if="task.description != ''">
+              <li>{{ task.description }}</li>
+            </div>
           </div>
         </ul>
         <i @click="deleteArea(area.id)" class="fas fa-trash-alt"></i>
@@ -43,6 +45,7 @@ export default {
         status: !currentArea.status,
       };
       this.updateArea(updatedArea);
+      location.reload();
     },
   },
   computed: {
