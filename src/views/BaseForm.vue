@@ -6,10 +6,12 @@
       <fieldset>
         <BaseInput
           v-model="form.description"
-          label="Task"
+          label="Area"
           type="text"
           placeholder="Description"
           required
+          oninvalid="this.setCustomValidity('Describe the area needing maintenance')"
+          oninput="setCustomValidity('')"
         />
         <label>
           Select Frequency:
@@ -58,12 +60,6 @@ export default {
   methods: {
     /* eslint-disable */ 
     sendForm(_e) {
-      // if (this.$v.invalid) {
-      //   console.log("HEY Invalid this: ", this.form);
-      //   return;
-      // } else {
-      //   console.log("NOPE EVERY FINE: ", this.form);
-      // }
       axios
         .post("http://localhost:3000/api/v1/areas/", this.form)
         .then(function (response) {
