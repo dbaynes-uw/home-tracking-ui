@@ -31,10 +31,10 @@ export default {
   },
   methods: {
     ...mapActions(["addArea"]),
-    onSubmit(event) {
-      event.preventDefault();
-      this.addArea(this.name);
-      this.name = "";
+    onSubmit(form) {
+      form.preventDefault();
+      this.addArea(this.description);
+      this.description = "";
     },
   },
 };

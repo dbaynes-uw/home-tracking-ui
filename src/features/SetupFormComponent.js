@@ -1,9 +1,9 @@
 export default function SetupFormComponent (props, { emit }) {
-  const updateValue = (event) => {
-    let val = event.target.value
+  const updateValue = (form) => {
+    let val = form.target.value
 
-    if (event.target.type === 'checkbox') val = event.target.checked
-    if (event.target.type === 'radio') val = props.value
+    if (form.target.type === 'checkbox') val = form.target.checked
+    if (form.target.type === 'radio') val = props.value
 
     emit('update:modelValue', val)
   }

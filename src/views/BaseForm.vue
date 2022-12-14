@@ -1,20 +1,23 @@
 <template>
   <div>
     <h2>Home Project</h2>
+    <!--form class="add-form" @submit.prevent="sendForm"-->
     <form class="add-form" @submit.prevent="sendForm">
       <fieldset>
         <BaseInput
-          v-model="event.description"
+          v-model="form.description"
           label="Task"
           type="text"
           placeholder="Description"
+          required
         />
         <label>
           Select Frequency:
           <select
             class="select-box"
-            v-model="event.frequency"
+            v-model="form.frequency"
             placeholder="Frequency"
+            required
           >
             <option>7 days</option>
             <option>10 days</option>
@@ -26,7 +29,7 @@
         <br /><br />
         <!--label>Detail Tasks</label>
         <input type="text" v-model="event.description" /-->
-        <label v-for="task in event.tasks" :key="task.id">
+        <label v-for="task in form.tasks" :key="task.id">
           Task:
           <input type="text" v-model="task.description" />
         </label>
@@ -44,9 +47,10 @@ import axios from "axios";
 export default {
   data() {
     return {
-      event: {
+      form: {
         name: "",
         description: "",
+        frequency: "",
         tasks: [{ description: "" }, { description: "" }, { description: "" }],
       },
     };
@@ -54,8 +58,14 @@ export default {
   methods: {
     /* eslint-disable */ 
     sendForm(_e) {
+      // if (this.$v.invalid) {
+      //   console.log("HEY Invalid this: ", this.form);
+      //   return;
+      // } else {
+      //   console.log("NOPE EVERY FINE: ", this.form);
+      // }
       axios
-        .post("http://localhost:3000/api/v1/areas/", this.event)
+        .post("http://localhost:3000/api/v1/areas/", this.form)
         .then(function (response) {
           console.log("Response", response);
           location.reload();
