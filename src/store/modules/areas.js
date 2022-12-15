@@ -35,9 +35,9 @@ const actions = {
     await axios.delete(api_url + `/${id}`);
     commit("removeArea", id);
   },
-  async filterAreas({ commit }, event) {
+  async filterAreas({ commit }, form) {
     const limit = parseInt(
-      event.target.options[event.target.options.selectedIndex].innerText
+      form.target.options[form.target.options.selectedIndex].innerText
     );
     const response = await axios.get(api_url + `?_limit=${limit}`);
     commit("setAreas", response.data);
