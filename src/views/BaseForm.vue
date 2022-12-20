@@ -13,27 +13,25 @@
           oninvalid="this.setCustomValidity('Describe the area needing maintenance')"
           oninput="setCustomValidity('')"
         />
+        <br /><br />
+        <label for="notes">Notes:</label>
+        <textarea id="notes" v-model="form.notes"></textarea>
+        <br /><br />
         <label>
           Select Frequency:
           <select
-            class="select-box"
             v-model="form.frequency"
             placeholder="Frequency"
+            class="select-number"
             required
           >
-            <option>7 days</option>
-            <option>10 days</option>
-            <option>14 days</option>
-            <option>21 days</option>
-            <option>30 days</option>
+            <option>7</option>
+            <option>10</option>
+            <option>14</option>
+            <option>21</option>
+            <option>30</option>
           </select>
-        </label>
-        <br /><br />
-        <!--label>Detail Tasks</label>
-        <input type="text" v-model="event.description" /-->
-        <label v-for="task in form.tasks" :key="task.id">
-          Task:
-          <input type="text" v-model="task.description" />
+          &nbsp;Days
         </label>
       </fieldset>
       <button class="button" type="submit">Submit</button>
@@ -53,7 +51,7 @@ export default {
         name: "",
         description: "",
         frequency: "",
-        tasks: [{ description: "" }, { description: "" }, { description: "" }],
+        notes: "",
       },
     };
   },
@@ -91,6 +89,14 @@ export default {
   width: 102%;
   height: 44px;
   margin-bottom: -2px;
+}
+.select-number {
+  width: 10%;
+  height: 1.75rem;
+}
+#notes {
+  width: 100%;
+  height: 4rem;
 }
 .button {
   margin: 30px;

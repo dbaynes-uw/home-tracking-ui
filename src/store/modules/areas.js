@@ -19,14 +19,15 @@ const actions = {
     const response = await axios.get(api_url);
     commit("setAreas", response.data);
   },
-  async addArea({ commit }, name, description, frequency, tasks) {
+  async addArea({ commit }, name, description, frequency, notes) {
     const response = await axios.post(api_url, {
       area: {
         name,
         description,
         frequency,
-        tasks,
-        status: false,
+        notes,
+        completed: false,
+        date_completed: null,
       },
     });
     commit("newArea", response.data);
@@ -42,6 +43,18 @@ const actions = {
     const response = await axios.get(api_url + `?_limit=${limit}`);
     commit("setAreas", response.data);
   },
+  async pastDue({ commit }, pastDue) {
+    pastDue = true;
+    const response = await axios.get(api_url + `?_pastDue=${pastDue}`);
+    commit("setAreas", response.data);
+  },
+  async dueBy({ commit }, form) {
+    const dueFilter =
+      form.target.options[form.target.options.selectedIndex].innerText;
+    const response = await axios.get(api_url + `?_dueFilter=${dueFilter}`);
+    commit("setAreas", response.data);
+  },
+
   async updateArea({ commit }, updatedArea) {
     const response = await axios.put(
       api_url + `/${updatedArea.id}`,

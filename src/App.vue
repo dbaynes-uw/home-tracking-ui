@@ -4,6 +4,8 @@
       <h1>Home Tracking Manager</h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails | SQLite</h6>
       <FilterAreas />
+      <DueBy />
+      <PastDue />
       <Areas />
       <BaseForm />
     </div>
@@ -14,10 +16,15 @@
 import BaseForm from "@/views/BaseForm";
 import Areas from "@/components/Areas.vue";
 import FilterAreas from "@/components/FilterAreas.vue";
+import DueBy from "@/components/DueBy.vue";
+import PastDue from "@/components/PastDue.vue";
+
 export default {
   name: "App",
   components: {
     FilterAreas,
+    DueBy,
+    PastDue,
     Areas,
     BaseForm,
   },
