@@ -24,6 +24,8 @@
             placeholder="Frequency"
             class="select-number"
             required
+            oninvalid="this.setCustomValidity('Select How Often Task Needs to be Done')"
+            oninput="setCustomValidity('')"
           >
             <option>7</option>
             <option>10</option>
