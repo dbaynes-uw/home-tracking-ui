@@ -8,12 +8,14 @@
       <PastDue />
       <Areas />
       <BaseForm />
+      <EditAreaForm />
     </div>
   </div>
 </template>
 
 <script>
 import BaseForm from "@/views/BaseForm";
+import EditAreaForm from "@/views/EditAreaForm";
 import Areas from "@/components/Areas.vue";
 import FilterAreas from "@/components/FilterAreas.vue";
 import DueBy from "@/components/DueBy.vue";
@@ -27,6 +29,7 @@ export default {
     PastDue,
     Areas,
     BaseForm,
+    EditAreaForm,
   },
 };
 </script>

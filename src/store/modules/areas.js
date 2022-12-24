@@ -27,7 +27,7 @@ const actions = {
         frequency,
         notes,
         completed: false,
-        date_completed: null,
+        action_date: null,
         histories,
       },
     });

@@ -1,8 +1,8 @@
 <template>
   <br />
   <div>
-    <h2>New Home Project</h2>
-    <form class="add-form" @submit.prevent="sendForm">
+    <h2>Edit Area</h2>
+    <form class="edit-form" @submit.prevent="sendForm">
       <fieldset>
         <BaseInput
           v-model="form.description"

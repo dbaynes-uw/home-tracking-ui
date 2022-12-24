@@ -14,22 +14,31 @@
         class="area"
         v-bind:class="{ 'is-complete': area.completed }"
       >
+        <button class="button" @click="editAreaForm(area)">Edit Area</button>
         <p class="p-align-left">
-          {{ area.description }}
+          <b>
+            <u>{{ area.description }}</u>
+          </b>
         </p>
-        <p class="p-align-left">
-          {{ area.notes }}
-        </p>
-        <!-- Days Overdue or BeforeDue-->
         <ul class="ul-left">
+          <li>{{ area.notes }}</li>
           <li v-if="area.completed">
             Date completed:
-            {{ format_date(area.date_completed) }}
+            {{ format_date(area.action_date) }}
           </li>
           <li>{{ area.frequency }} day cycle</li>
-          <li v-if="area.date_completed">
-            {{ caculateDue(area.date_completed, area.frequency) }} -
-            {{ caculateDueDate(area.date_completed, area.frequency) }}
+          <li v-if="area.action_date">
+            <span v-for="(history, index) in area.histories" :key="history.id">
+              <div v-if="index == area.histories.length - 1">
+                History: {{ history.notes }}
+                on
+                {{ format_date(history.created_at) }}.
+              </div>
+            </span>
+          </li>
+          <li>
+            {{ caculateDue(area.action_date, area.frequency) }}:
+            {{ caculateDueDate(area.action_date, area.frequency) }}
           </li>
         </ul>
         <i @click="deleteArea(area.id)" class="fas fa-trash-alt"></i>
@@ -58,17 +67,17 @@ export default {
         return value;
       }
     },
-    caculateDueDate(date_completed, frequency) {
+    caculateDueDate(action_date, frequency) {
       let returnMessage = "";
-      let dateCompleted = moment(date_completed);
+      let dateCompleted = moment(action_date);
       let dueDate = moment(dateCompleted).add(frequency, "days");
       returnMessage = `${moment(dueDate).format("MM/DD/YY")}`;
       return returnMessage;
     },
-    caculateDue(date_completed, frequency) {
+    caculateDue(action_date, frequency) {
       let returnMessage = "";
       let start = moment(new Date());
-      let end = moment(date_completed);
+      let end = moment(action_date);
       let duration = end.diff(start, "days") + frequency;
 
       if (duration >= 0) {
@@ -79,22 +88,28 @@ export default {
       }
       return returnMessage;
     },
+    editAreaForm(currentArea) {
+      console.log("ONCLICK - Area: ", currentArea);
+      const updatedArea = {
+        id: currentArea.id,
+        description: currentArea.description,
+        notes: currentArea.notes,
+        completed: !currentArea.completed,
+        action_date: currentArea.action_date,
+      };
+      this.updateArea(updatedArea);
+      //location.reload();
+    },
     onDoubleClick(currentArea) {
       const updatedArea = {
         id: currentArea.id,
         description: currentArea.description,
         notes: currentArea.notes,
         completed: !currentArea.completed,
-        date_completed: currentArea.date_completed,
+        action_date: currentArea.action_date,
       };
-      if (updatedArea.completed === true) {
-        updatedArea.date_completed = new Date().toISOString().substr(0, 10);
-      } else {
-        updatedArea.date_completed = null;
-        console.log(updatedArea.date_completed);
-      }
       this.updateArea(updatedArea);
-      // location.reload();
+      location.reload();
     },
   },
   computed: {
